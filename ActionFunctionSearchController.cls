@@ -14,6 +14,7 @@ public with sharing class ActionFunctionSearchController
     public ActionFunctionSearchController()
     {
         results=new List<Account>();
+        //commentS
     }
     
     // executes the search
