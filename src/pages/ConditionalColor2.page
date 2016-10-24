@@ -1,0 +1,9 @@
+<apex:page standardController="Campaign" recordSetVar="Campaigns">
+<apex:pageBlock >
+  <apex:pageBlockTable value="{!Campaigns}" var="campaign">
+      <apex:column value="{!campaign.Name}"/>
+      <apex:column value="{!campaign.BudgetedCost}"/>
+      <apex:column value="{!campaign.ActualCost}" style="color: {!IF(AND(NOT(ISNULL(campaign.ActualCost)), campaign.ActualCost <= campaign.BudgetedCost), 'lawngreen', 'red')}"/>
+  </apex:pageBlockTable>
+</apex:pageBlock>  
+</apex:page>

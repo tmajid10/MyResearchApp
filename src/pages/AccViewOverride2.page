@@ -1,0 +1,49 @@
+<apex:page standardController="Account">
+    <apex:tabPanel switchType="client">
+        <apex:tab label="Acct Overview" name="Overview">
+            <apex:detail relatedList="false" />
+        </apex:tab>
+        <apex:tab label="Contacts" name="Contact">
+            <apex:repeat value="{!Account.contacts}" var="contact">
+                <apex:pageBlock title="{!contact.Name}">
+                    <apex:pageBlockSection >
+                        <apex:pageBlockSectionItem >
+                            <apex:outputLabel value="Name"></apex:outputLabel>
+                            <apex:outputlink value="{!URLFOR($Action.Contact.View, contact.id)}">
+                                <apex:outputField value="{!contact.Name}"/>
+                            </apex:outputlink>
+                        </apex:pageBlockSectionItem>
+                        
+                        <apex:outputField value="{!contact.Email}" />
+                        <apex:outputField value="{!contact.HasOptedOutOfEmail}" />
+                        <apex:outputField value="{!Contact.Phone}" />
+                        <apex:outputField value="{!Contact.DoNotCall}" />
+                        <apex:outputField value="{!contact.Fax}" />
+                        <apex:outputField value="{!contact.HasOptedOutOfFax}" />                        
+                    </apex:pageBlockSection>
+                </apex:pageBlock>
+                <apex:relatedList subject="{!contact}" list="OpenActivities"/>
+                <br/>
+            </apex:repeat>
+        </apex:tab>
+        <apex:tab label="Opportunities" name="Opportunity">
+            <apex:repeat value="{!Account.opportunities}" var="opp">
+                <apex:pageBlock title="{!opp.Name}">
+                    <apex:pageBlockSection >
+                        <apex:pageBlockSectionItem >
+                            <apex:outputLabel value="Name"></apex:outputLabel>
+                            <apex:outputLink value="{!URLFOR($Action.Opportunity.View, opp.Id)}">
+                                <apex:outputField value="{!opp.Name}"/>
+                            </apex:outputLink>
+                        </apex:pageBlockSectionItem>
+                        <apex:outputField value="{!opp.CloseDate}" />
+                        <apex:outputField value="{!opp.Amount}" />
+                        <apex:outputField value="{!opp.StageName}" />
+                        <apex:outputField value="{!opp.Probability}" />
+                    </apex:pageBlockSection>
+                </apex:pageBlock>
+                <apex:relatedList subject="{!opp}" list="OpportunityLineItems" />
+            </apex:repeat>
+        </apex:tab>
+    </apex:tabPanel>
+</apex:page>

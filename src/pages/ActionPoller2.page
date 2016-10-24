@@ -1,0 +1,16 @@
+<apex:page controller="PollerController">
+    <apex:sectionHeader title="Payment Simulator"/>
+    
+    <apex:form >
+        <apex:pageBlock title="Status">
+            <apex:actionPoller action="{!movePayment}" reRender="statusPanel" interval="5" status="status" enabled="{!paymentState != 'Complete'}"/>
+            
+            <apex:outputPanel id="statusPanel">
+                The status of your payment is: 
+                <apex:outputText value="{!paymentState}"></apex:outputText>
+            </apex:outputPanel>
+            <br/><br/>
+            <apex:actionStatus id="status" startText="Polling"></apex:actionStatus>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

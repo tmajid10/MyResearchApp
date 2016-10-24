@@ -1,0 +1,15 @@
+<apex:page controller="ContactController" showHeader="false">
+<apex:form id="form1">
+  <apex:PageBlock >
+  <apex:pageBlockButtons >
+  <apex:CommandButton value="Save" action="{!save}"/>
+  </apex:pageBlockButtons>
+      <apex:PageBlockTable value="{!Contacts}" var="contact">
+          <apex:column value="{!contact.Name}"/>
+          <apex:column value="{!contact.Phone}"/>
+          <apex:column > <apex:inputField value="{!contact.Email}"/> </apex:column>
+      </apex:PageBlockTable>
+      
+  </apex:PageBlock>
+  </apex:form>
+</apex:page>
